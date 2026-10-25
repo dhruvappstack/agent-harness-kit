@@ -1,0 +1,5 @@
+# Paths are relative to ROOT. Missing paths are skipped. Adapt to your folder layout.
+lib/domain :: *.dart :: ^import 'package:(flutter|sqflite|dio|http)/ :: Domain imports Flutter or an I/O package. FIX: keep Domain pure Dart; put widgets in presentation and I/O in data. REF: ARCHITECTURE.md#layers
+lib/data :: *.dart :: ^import 'package:flutter/(material|cupertino|widgets)\.dart' :: Data layer imports widgets. FIX: expose plain models and render them in presentation. REF: ARCHITECTURE.md#layers
+lib :: *.dart :: [^a-zA-Z_.]print\( :: print() left in app code. FIX: use the app logger. REF: docs/quality.md
+lib :: *.dart :: SharedPreferences.*([Tt]oken|[Pp]assword) :: Credential in SharedPreferences. FIX: use flutter_secure_storage. REF: docs/security.md

@@ -1,0 +1,4 @@
+# Applied to every project, relative to the repo root.
+# path-glob :: file-globs :: forbidden-regex :: message
+. :: *.swift,*.kt,*.java,*.ts,*.tsx,*.js,*.jsx,*.py,*.go,*.rb,*.m,*.dart :: ([Aa][Pp][Ii][_-]?[Kk][Ee][Yy]|[Ss][Ee][Cc][Rr][Ee][Tt]|[Pp][Aa][Ss][Ss]([Ww][Oo][Rr])?[Dd]|[Tt][Oo][Kk][Ee][Nn])[A-Za-z_]*[[:space:]]*[:=][[:space:]]*["'][A-Za-z0-9+/_=.-]{16,}["'] :: Possible hardcoded secret. FIX: load it from the environment or a secret store and rotate the exposed value. REF: docs/security.md
+. :: *.swift,*.kt,*.java,*.ts,*.tsx,*.js,*.jsx,*.py,*.go :: BEGIN (RSA |EC |OPENSSH )?PRIVATE KEY :: Private key in source. FIX: remove it from the repo and rotate it. REF: docs/security.md

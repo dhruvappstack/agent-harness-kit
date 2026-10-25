@@ -1,0 +1,5 @@
+# Paths are relative to ROOT. Missing paths are skipped. Adapt to your folder layout.
+src/domain :: *.ts,*.tsx :: from ['"](react|react-dom|next[^'"]*|vue|svelte[^'"]*)['"] :: Domain imports a UI framework. FIX: keep Domain plain TypeScript; put UI in src/components or src/ui. REF: ARCHITECTURE.md#layers
+src/components,src/ui :: *.ts,*.tsx,*.vue,*.svelte :: from ['"](\.\./)+(api|services)/|from ['"]@/(api|services)/ :: Component imports the API layer directly. FIX: use a hook or store in the application layer. REF: ARCHITECTURE.md#layers
+src :: *.ts,*.tsx,*.vue,*.svelte :: dangerouslySetInnerHTML|v-html|\.innerHTML[[:space:]]*= :: Raw HTML injection. FIX: render text safely or sanitize with the approved sanitizer. REF: docs/security.md
+src :: *.ts,*.tsx :: (localStorage|sessionStorage)\.setItem\([^)]*([Tt]oken|[Pp]assword) :: Credential in web storage. FIX: use httpOnly cookies. REF: docs/security.md

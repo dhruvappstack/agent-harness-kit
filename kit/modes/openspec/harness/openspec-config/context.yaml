@@ -1,0 +1,4 @@
+context: |
+  Read AGENTS.md and ARCHITECTURE.md before proposing or designing.
+  Layer rules in ARCHITECTURE.md are enforced by scripts/harness/arch-lint.sh.
+  Every change needs review.md ending in a VERDICT line and, after implementation, verification.md ending in a RESULT line (docs/workflow.md).

@@ -1,0 +1,5 @@
+# Paths are relative to ROOT; globs allowed. Missing paths are skipped. Adapt to your module layout.
+*/src/main/**/domain :: *.kt,*.java :: ^import (android|androidx)\. :: Domain imports an Android framework class. FIX: keep Domain plain Kotlin; wrap platform APIs in Data. REF: ARCHITECTURE.md#layers
+*/src/main/**/data :: *.kt,*.java :: ^import (androidx\.compose|android\.view|android\.widget) :: Data layer imports UI classes. FIX: expose models and render in the UI layer. REF: ARCHITECTURE.md#layers
+*/src/main :: *.kt :: !!\. :: Non-null assertion (!!). FIX: handle null explicitly. REF: docs/quality.md
+*/src/main :: *.kt,*.java :: (Log\.[dviwe]\()[^)]*([Tt]oken|[Pp]assword) :: Credential written to logcat. FIX: remove it from logs. REF: docs/security.md

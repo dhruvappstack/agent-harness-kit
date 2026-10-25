@@ -1,0 +1,24 @@
+rules:
+  proposal:
+    - State what is out of scope
+    - Include a rollback or kill-switch plan for user-facing or data-affecting changes
+    - Describe what and why, not how
+  specs:
+    - Scenarios describe observable behaviour only (UI state, HTTP response, persisted data), never logs or internal calls
+    - Every scenario must be mappable to one automated test or one evaluator check
+    - Include error, empty, offline and accessibility scenarios for user-facing capabilities
+  design:
+    - Name the modules and layers touched and confirm dependency direction against ARCHITECTURE.md
+    - Note security, privacy and observability impact
+    - Give alternatives considered for each real decision
+  review:
+    - Written by a fresh-context read-only reviewer per harness/roles/plan-reviewer.md
+    - 'The last line must be exactly "VERDICT: APPROVE" or "VERDICT: REVISE"'
+  test-plan:
+    - Map every spec scenario to a named test and level, or to an explicit evaluator check
+    - Prefer the lowest test level that can prove the behaviour
+    - List fixtures and test identifiers the tests need
+  tasks:
+    - One task is one reviewable commit and states its own verification command
+    - Tests are written in the same group as the code they test
+    - The final group runs scripts/harness/verify.sh --e2e and the evaluator step, and does not hold deferred tests

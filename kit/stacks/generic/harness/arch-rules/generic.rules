@@ -1,0 +1,4 @@
+# Add rules for your project. Format:
+#   dirs :: file-globs :: forbidden-regex :: message (WHAT. FIX. REF.)
+# Example: forbid direct use of a cloud SDK outside the adapter folder
+#   src/domain :: *.py :: ^(from|import) boto3 :: Domain imports a cloud SDK. FIX: use the storage port. REF: ARCHITECTURE.md#layers

@@ -1,0 +1,9 @@
+operations:
+  apply:
+    guidance:
+      - Before editing code run scripts/harness/check-change.sh <change> --stage plan and stop if it fails
+      - Follow harness/roles/implementer.md; work one task at a time and run scripts/harness/verify.sh --fast after each task group
+      - Do not edit specs or design to make code pass; stop and report plan problems
+  archive:
+    guidance:
+      - Run scripts/harness/check-change.sh <change> --stage done first and do not archive if it fails

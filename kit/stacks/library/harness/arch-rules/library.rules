@@ -1,0 +1,4 @@
+# Paths are relative to ROOT. Missing paths are skipped. Adapt to your layout and language.
+src :: *.ts,*.js :: console\.(log|debug)\( :: Debug output left in library code. FIX: remove it or use the library's logger hook. REF: docs/quality.md
+src :: *.py :: ^[[:space:]]*print\( :: print() left in library code. FIX: use logging. REF: docs/quality.md
+src :: *.go,*.rs :: panic\(|unwrap\(\) :: Panic or unwrap in library code. FIX: return an error to the caller. REF: docs/quality.md

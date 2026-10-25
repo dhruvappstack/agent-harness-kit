@@ -1,0 +1,5 @@
+# Paths are relative to ROOT. Missing paths are skipped. Adapt to your folder layout.
+src/domain :: *.ts,*.tsx :: from ['"](react|react-native|expo[^'"]*)['"] :: Domain imports React or a native module. FIX: keep Domain plain TypeScript; put UI in src/ui and platform access in src/data. REF: ARCHITECTURE.md#layers
+src/ui :: *.ts,*.tsx :: from ['"](\.\./)+data/|from ['"]@/data/ :: UI imports the data layer directly. FIX: go through a service or hook in the application layer. REF: ARCHITECTURE.md#layers
+src :: *.ts,*.tsx :: console\.(log|debug)\( :: console.log left in source. FIX: use the app logger. REF: docs/quality.md
+src :: *.ts,*.tsx :: AsyncStorage\.setItem\([^)]*([Tt]oken|[Pp]assword) :: Credential in AsyncStorage. FIX: use the platform secure store (Keychain/Keystore). REF: docs/security.md

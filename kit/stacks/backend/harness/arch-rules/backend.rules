@@ -1,0 +1,5 @@
+# Paths are relative to ROOT. Missing paths are skipped. Adapt directory names and import syntax to your language.
+src/domain :: *.ts,*.js :: from ['"][^'"]*(express|fastify|koa|typeorm|prisma|pg|mongoose|axios)[^'"]*['"] :: Domain imports a framework or driver. FIX: keep Domain pure; wrap I/O in repositories or gateways. REF: ARCHITECTURE.md#layers
+src/domain :: *.py :: ^(from|import) (flask|fastapi|django|sqlalchemy|requests|boto3) :: Domain imports a framework or driver. FIX: keep Domain pure; wrap I/O in repositories or gateways. REF: ARCHITECTURE.md#layers
+src/handlers,src/controllers :: *.ts,*.js,*.py :: (SELECT|INSERT|UPDATE|DELETE)[[:space:]]+.*(FROM|INTO|SET) :: Raw SQL in a handler. FIX: move queries to the repository layer and use parameters. REF: ARCHITECTURE.md#layers
+src :: *.ts,*.js,*.py,*.go,*.java,*.kt :: ["'](SELECT|INSERT|UPDATE|DELETE)[^"']*["'][[:space:]]*(\+|%|\.format) :: SQL built by string concatenation. FIX: use parameterized queries. REF: docs/security.md

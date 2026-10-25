@@ -1,0 +1,32 @@
+name: harness
+
+on:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  plan-gates:
+    runs-on: ubuntu-latest
+    steps:
+      # Pin actions to commit SHAs in your repo (docs/security.md).
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Docs gate
+        run: scripts/harness/check-docs.sh
+      - name: Change gates (no-op when SPEC_MODE=none; strictness set by CI_SPEC_GATE)
+        if: ${{ !contains(github.event.pull_request.labels.*.name, 'no-spec') }}
+        run: scripts/harness/check-change.sh --changed "origin/${{ github.base_ref }}"
+
+  verify:
+    # iOS needs macos-latest. Android and RN-Android work on ubuntu-latest. Monorepos: use a matrix per stack.
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      # Install your toolchain here (Xcode select, JDK + Gradle cache, Node + pnpm, Go, Python...).
+      - name: Verify (arch-lint, lint, build, unit tests)
+        run: scripts/harness/verify.sh
+      # E2E on simulators/emulators is usually a separate, slower job:
+      # - run: scripts/harness/verify.sh --e2e

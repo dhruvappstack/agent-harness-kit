@@ -1,0 +1,5 @@
+# Paths are relative to ROOT. Rules whose path does not exist are skipped. Adapt to your module layout.
+Sources/Domain :: *.swift :: ^import (UIKit|SwiftUI|Combine|CoreData|SwiftData) :: Domain imports a UI or persistence framework. FIX: keep Domain pure Swift; move UI to Presentation and storage to Data. REF: ARCHITECTURE.md#layers
+Sources/Data :: *.swift :: ^import (UIKit|SwiftUI) :: Data layer imports UI framework. FIX: expose plain models and let Presentation render them. REF: ARCHITECTURE.md#layers
+Sources :: *.swift :: try! :: Force try in app code. FIX: handle or propagate the error. REF: docs/quality.md
+Sources :: *.swift :: UserDefaults\.standard\.(set|string|object)\(.*([Tt]oken|[Pp]assword|[Ss]ecret) :: Credential in UserDefaults. FIX: use Keychain. REF: docs/security.md
